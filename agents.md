@@ -47,6 +47,11 @@ Errors are learning opportunities. When something breaks:
 4. Update directive to include new flow
 5. System is now stronger
 
+**4. Auto-Push to GitHub**
+- After any set of approved changes to the project files (especially website code), automatically push the changes to the connected GitHub repository.
+- Ensure the remote is always in sync with the local state.
+
+
 ## File Organization
 
 **Deliverables vs Intermediates:**
