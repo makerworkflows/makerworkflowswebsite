@@ -117,3 +117,26 @@ export interface IUnifiedTraceEvent extends IUnifiedResource {
   outputs?: Array<{ productId: string; quantity: number }>;
   createdDate: Date;
 }
+
+// CRM: Lead / Prospect
+export interface IUnifiedLead extends IUnifiedResource {
+  firstName: string;
+  lastName: string;
+  email: string;
+  company: string;
+  status: 'NEW' | 'CONTACTED' | 'QUALIFIED' | 'UNQUALIFIED' | 'CONVERTED';
+  source?: string;
+  score?: number;
+  ownerId?: string;
+}
+
+// CRM: Opportunity / Deal
+export interface IUnifiedOpportunity extends IUnifiedResource {
+  title: string;
+  amount: number;
+  currency: string;
+  stage: 'PROSPECTING' | 'QUALIFICATION' | 'PROPOSAL' | 'NEGOTIATION' | 'CLOSED_WON' | 'CLOSED_LOST';
+  probability?: number;
+  accountId?: string;
+  closeDate?: Date;
+}

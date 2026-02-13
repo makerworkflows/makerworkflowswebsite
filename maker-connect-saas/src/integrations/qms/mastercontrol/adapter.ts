@@ -1,5 +1,6 @@
 import { BaseAdapter } from '../../core/adapter-base';
 import { IUnifiedResource, IUnifiedQualityEvent } from '../../core/types';
+import { ledgerService } from '../../../services/ledger/service';
 
 /**
  * Adapter for MasterControl QMS
@@ -35,6 +36,34 @@ export class MasterControlAdapter extends BaseAdapter {
        } as IUnifiedQualityEvent;
     }
     return null;
+  }
+
+  /**
+   * Captures a quality event (CAPA, Deviation, Audit) and records it to the Immutable Ledger
+   */
+  async recordQualityEvent(event: IUnifiedQualityEvent): Promise<IUnifiedResource> {
+    // 1. Send to MasterControl API (mock functionality)
+    console.log(`[MasterControl] Sending quality event ${event.id} to API...`);
+    
+    // 2. Record to Blockchain Ledger (ComplianceCore)
+    const ledgerEntry = await ledgerService.recordEntry({
+      type: 'COMPLIANCE_EVENT',
+      provider: 'MASTERCONTROL',
+      eventId: event.id,
+      eventType: event.type,
+      status: event.status,
+      timestamp: event.occurredDate
+    });
+    
+    // 3. Return enriched resource with ledger proof
+    return {
+      ...event,
+      rawData: { 
+        ...event.rawData, 
+        ledgerTxId: ledgerEntry.id, 
+        ledgerHash: ledgerEntry.dataHash 
+      }
+    };
   }
 
   async listResources(resourceType: string, params?: Record<string, any>): Promise<IUnifiedResource[]> {

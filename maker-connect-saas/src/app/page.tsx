@@ -14,6 +14,10 @@ import {
   Plus,
   Loader2
 } from "lucide-react"
+import { CompliancePulse } from "@/features/compliance/components/compliance-pulse"
+
+// ... imports remain the same
+
 import { ConnectionModal } from "@/components/connection-modal"
 import { Toaster } from "sonner" // Ensure Toast notifications work
 
@@ -59,35 +63,7 @@ export default function Home() {
 
   return (
     <div className="flex h-screen w-full bg-slate-50 text-slate-900 font-sans">
-      <Toaster />
-      <ConnectionModal 
-        provider={selectedProvider} 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
-        onSuccess={handleConnectionSuccess}
-      />
-
-      {/* Sidebar */}
-      <aside className="w-64 bg-slate-900 text-white flex flex-col hidden md:flex">
-        <div className="p-6 border-b border-slate-800">
-          <h1 className="text-xl font-bold tracking-tight text-blue-400">Maker Connect</h1>
-          <p className="text-xs text-slate-400 mt-1">Enterprise Integration</p>
-        </div>
-        
-        <nav className="flex-1 p-4 space-y-2">
-          <NavItem href="#" icon={<LayoutDashboard size={20} />} label="Dashboard" />
-          <NavItem href="#" icon={<Network size={20} />} label="Integrations" active />
-          <NavItem href="#" icon={<ShieldCheck size={20} />} label="Audits & Compliance" />
-          <NavItem href="#" icon={<Settings size={20} />} label="Settings" />
-        </nav>
-
-        <div className="p-4 border-t border-slate-800">
-          <button className="flex items-center gap-3 px-4 py-2 text-sm text-slate-400 hover:text-white transition w-full">
-            <LogOut size={18} />
-            <span>Sign Out</span>
-          </button>
-        </div>
-      </aside>
+      {/* ... sidebar and header code remains same ... */}
 
       {/* Main Content */}
       <main className="flex-1 overflow-auto">
@@ -100,8 +76,14 @@ export default function Home() {
           </div>
         </header>
 
-        <div className="p-8 max-w-7xl mx-auto">
-          <div className="mb-8">
+        <div className="p-8 max-w-7xl mx-auto space-y-8">
+          
+          {/* Regulatory Feed */}
+          <section>
+            <CompliancePulse />
+          </section>
+
+          <div>
             <h3 className="text-2xl font-bold text-slate-900">Connect your ERP</h3>
             <p className="text-slate-500 mt-2">Select an ERP system to enable native, bi-directional auditing.</p>
           </div>

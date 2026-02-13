@@ -1,9 +1,10 @@
+
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { Suspense } from "react"
 
 import { cn } from "@/lib/utils"
-// We'll create this component next
 import { UserAuthForm } from "./components/user-auth-form" 
 
 export const metadata: Metadata = {
@@ -52,7 +53,9 @@ export default function AuthenticationPage() {
               Enter your email below to login (Demo: demo@makerworkflows.com / password)
             </p>
           </div>
-          <UserAuthForm />
+          <Suspense fallback={<div>Loading form...</div>}>
+            <UserAuthForm />
+          </Suspense>
           <p className="px-8 text-center text-sm text-muted-foreground">
             By clicking continue, you agree to our{" "}
             <Link
