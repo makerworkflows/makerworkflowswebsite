@@ -534,4 +534,9 @@ footer {
     nav .btn-sm:first-of-type {
         display: none; /* Hide "Book A Call" to keep it lean and clean on small devices */
     }
+
+    /* Force line breaks on mobile */
+    .mobile-break {
+        display: block;
+    }
 }
