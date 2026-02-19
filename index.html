@@ -20,7 +20,7 @@
 
   <body>
     <nav class="navbar">
-      <a href="#"><img src="logo.png" alt="Maker Workflows Logo" class="logo-img" /></a>
+      <a href="#"><img id="navbar-logo" src="logo_white.png" alt="Maker Workflows Logo" class="logo-img" /></a>
       <div style="display: flex; gap: 15px; align-items: center">
         <button id="theme-toggle" style="background: transparent; border: none; cursor: pointer; color: var(--text); padding: 5px; display: flex; align-items: center; justify-content: center; border-radius: 50%; width: 32px; height: 32px; transition: background 0.2s;">
           <!-- Moon Icon (Default Dark Mode) -->
@@ -312,6 +312,7 @@
       const themeToggleBtn = document.getElementById('theme-toggle');
       const moonIcon = document.getElementById('moon-icon');
       const sunIcon = document.getElementById('sun-icon');
+      const navbarLogo = document.getElementById('navbar-logo');
       
       // Check local storage for preference, default to dark
       const currentTheme = localStorage.getItem('theme') || 'dark';
@@ -320,6 +321,7 @@
           document.documentElement.setAttribute('data-theme', 'light');
           moonIcon.style.display = 'block';
           sunIcon.style.display = 'none';
+          navbarLogo.src = 'logo_black.png';
       }
       
       themeToggleBtn.addEventListener('click', () => {
@@ -330,11 +332,13 @@
               localStorage.setItem('theme', 'dark');
               moonIcon.style.display = 'none';
               sunIcon.style.display = 'block';
+              navbarLogo.src = 'logo_white.png';
           } else {
               document.documentElement.setAttribute('data-theme', 'light');
               localStorage.setItem('theme', 'light');
               moonIcon.style.display = 'block';
               sunIcon.style.display = 'none';
+              navbarLogo.src = 'logo_black.png';
           }
       });
     </script>
