@@ -1,6 +1,0 @@
-node_modules/
-dist/
-.npm-cache/
-maker-connect-darwin-arm64/
-*.dmg
-.DS_Store
